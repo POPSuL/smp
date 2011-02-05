@@ -77,6 +77,12 @@ public:
       * @return void
      */
     virtual void setCurrentPosition(uint newPosition) = 0;
+
+    /**
+      * Returns track duration in seconds
+      *
+      * @return uint
+     */
     virtual uint getDuration() const = 0;
 
     /**
