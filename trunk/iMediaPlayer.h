@@ -29,6 +29,12 @@ public:
     virtual void play(QString file, bool withFadeIn = false) = 0;
 
     /**
+      * Continue playing if paused
+      *
+      * @return void
+     */
+    virtual void play() = 0;
+    /**
       * Pauses playing and saves current position
       *
       * @return void
