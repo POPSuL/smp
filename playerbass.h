@@ -17,6 +17,7 @@ class PlayerBass : public iMediaPlayer
 public:
     static iMediaPlayer * getInstance();
     virtual void play(QString file, bool withFade = false);
+    virtual void play();
     virtual void pause();
     virtual void stop(bool withFadeOut = false);
     virtual bool isPlayed() const;
@@ -36,6 +37,17 @@ private:
     explicit PlayerBass(QObject *parent = 0);
     static QMutex mutex;
     static PlayerBass * instance;
+
+    void fadeIn(DWORD channel, float targetVolume);
+    void fadeOut(DWORD channel);
+    void e(DWORD c);
+    void _setVolume(DWORD channel, float volume);
+    DWORD currentChannel;
+    DWORD subChannel;
+    QString currentFile;
+    QString subfile;
+    float volume;
+    bool bassInitialized;
 signals:
 
 public slots:
