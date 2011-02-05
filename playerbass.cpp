@@ -19,7 +19,7 @@ PlayerBass::PlayerBass(QObject *parent)
 #endif
     }
     //...
-    this->volume = 0.5f;
+    this->volume = 0.1f;
     this->bassInitialized = true;
 }
 
@@ -141,7 +141,7 @@ float PlayerBass::getVolume() const {
 }
 
 void PlayerBass::setVolume(float newVolume) {
-    if(newVolume < 1.f || newVolume > 0.f)
+    if(newVolume > 1.f || newVolume < 0.f)
         return;
     this->volume = newVolume;
     this->_setVolume(this->currentChannel, this->volume);
