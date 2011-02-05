@@ -6,6 +6,11 @@
 #include <bass/bass.h>
 #include "global.h"
 
+/**
+  * Media player based on BASS library
+  *
+  * @author Viktor Suprun
+  */
 class PlayerBass : public iMediaPlayer
 {
     Q_OBJECT
@@ -14,18 +19,18 @@ public:
     virtual void play(QString file, bool withFade = false);
     virtual void pause();
     virtual void stop(bool withFadeOut = false);
-    virtual bool isPlayed();
-    virtual bool isPaused();
-    virtual bool isStopped();
-    virtual uint getCurrentPosition();
+    virtual bool isPlayed() const;
+    virtual bool isPaused() const;
+    virtual bool isStopped() const;
+    virtual uint getCurrentPosition() const;
     virtual void setCurrentPosition(uint newPosition);
-    virtual uint getDuration();
-    virtual float getVolume();
+    virtual uint getDuration() const;
+    virtual float getVolume() const;
     virtual void setVolume(float newVolume);
-    virtual int getPan();
+    virtual int getPan() const;
     virtual void setPan(int newPan);
-    virtual QStringList * getSupportedExtension();
-    virtual bool isSupportedFile(QString fileName);
+    virtual QStringList * getSupportedExtensions() const;
+    virtual bool isSupportedFile(QString fileName) const;
     virtual float * getFFTData(); //for visual
 private:
     explicit PlayerBass(QObject *parent = 0);

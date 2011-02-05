@@ -3,28 +3,134 @@
 
 #include <QObject>
 
-
+/**
+  * This class is a generic player interface all players must implement
+  *
+  * @author Viktor Suprun
+ */
 class iMediaPlayer : public QObject {
     Q_OBJECT
 
 public:
+    /**
+      * Provides a single instance of media player
+      *
+      * @return iMediaPlayer
+     */
     static iMediaPlayer * getInstance();
-    virtual void play(QString file, bool withFade = false) = 0;
+
+    /**
+      * Starts playing a track
+      *
+      * @param QString file being played
+      * @param bool on true provide a fade in effect
+      * @return void
+     */
+    virtual void play(QString file, bool withFadeIn = false) = 0;
+
+    /**
+      * Pauses playing and saves current position
+      *
+      * @return void
+     */
     virtual void pause() = 0;
+
+    /**
+      * Stops playing and flushes current position
+      *
+      * @return void
+     */
     virtual void stop(bool withFadeOut = false) = 0;
-    virtual bool isPlayed() = 0;
-    virtual bool isPaused() = 0;
-    virtual bool isStopped() = 0;
-    virtual uint getCurrentPosition() = 0;
+
+    /**
+      *
+      *
+      * @return bool
+     */
+    virtual bool isPlayed() const = 0;
+
+    /**
+      * Indicates whether playing is paused
+      *
+      * @return bool
+     */
+    virtual bool isPaused() const = 0;
+
+    /**
+      * Indicates whether playing is stopped
+      *
+      * @return bool
+     */
+    virtual bool isStopped() const = 0;
+
+    /**
+      * Returns current position of playing track
+      *
+      * @return uint
+     */
+    virtual uint getCurrentPosition() const = 0;
+
+    /**
+      * Sets new current position within a track
+      *
+      * @param uint position within a track to set
+      * @return void
+     */
     virtual void setCurrentPosition(uint newPosition) = 0;
-    virtual uint getDuration() = 0;
-    virtual float getVolume() = 0;
+    virtual uint getDuration() const = 0;
+
+    /**
+      * Returns current player volume
+      *
+      * @return float
+     */
+    virtual float getVolume() const = 0;
+
+    /**
+      * Sets new player volume
+      *
+      * @param float new volume value
+      * @return void
+     */
     virtual void setVolume(float newVolume) = 0;
-    virtual int getPan() = 0;
+
+    /**
+      * Returns current panorama position
+      *
+      * @return int panorama value; negative on left, positive on right
+     */
+    virtual int getPan() const = 0;
+
+    /**
+      * Sets new panorama position value
+      *
+      * @param int new panorama position value
+      * @return void
+     */
     virtual void setPan(int newPan) = 0;
-    virtual QStringList * getSupportedExtension() = 0;
-    virtual bool isSupportedFile(QString fileName) = 0;
+
+    /**
+      *
+      *
+      * @return QStringList
+     */
+    virtual QStringList * getSupportedExtensions() const = 0;
+
+    /**
+      *
+      *
+      * @param QString
+      * @return bool
+     */
+    virtual bool isSupportedFile(QString fileName) const = 0;
+
+    /**
+      *
+      *
+      * @return float
+     */
     virtual float * getFFTData() = 0; //for visual
+
 signals:
     void startPlaying(QString file);
     void paused();
