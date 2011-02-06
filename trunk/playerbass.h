@@ -42,11 +42,14 @@ private:
     void fadeOut(DWORD channel);
     void e(DWORD c);
     void _setVolume(DWORD channel, float volume);
+    void _setPan(DWORD channel, int pan);
     DWORD currentChannel;
     DWORD subChannel;
     QString currentFile;
     QString subfile;
     float volume;
+    float fft[4096];
+    int pan;
     bool bassInitialized;
 signals:
 

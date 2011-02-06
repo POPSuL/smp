@@ -46,6 +46,7 @@ void PlayerBass::play(QString file, bool withFade) {
                    error = BASS_ErrorGetCode();
                    if(this->currentChannel && error == BASS_OK) {
                        this->_setVolume(this->currentChannel, 0.f);
+                       this->setPan(this->pan);
                        this->fadeIn(this->currentChannel, this->volume);
                        if(this->isPlayed())
                            this->fadeOut(this->subChannel);
@@ -65,6 +66,7 @@ void PlayerBass::play(QString file, bool withFade) {
                    error = BASS_ErrorGetCode();
                    if(this->currentChannel && error == BASS_OK) {
                        this->setVolume(this->volume);
+                       this->setPan(this->pan);
                        this->play();
                    } else {
                        this->currentChannel = this->subChannel;
@@ -125,15 +127,22 @@ bool PlayerBass::isStopped() const {
 }
 
 uint PlayerBass::getCurrentPosition() const {
-    return 0;
+    if(this->bassInitialized) {
+        QWORD pos = BASS_ChannelGetPosition(this->currentChannel, BASS_POS_BYTE);
+        return (uint) BASS_ChannelBytes2Seconds(this->currentChannel, pos);
+    } else {
+        return 0;
+    }
 }
 
 void PlayerBass::setCurrentPosition(uint newPosition) {
-    //do it
+    QWORD pos = BASS_ChannelSeconds2Bytes(this->currentChannel, (double) newPosition);
+    BASS_ChannelSetPosition(this->currentChannel, pos, BASS_POS_BYTE);
 }
 
 uint PlayerBass::getDuration() const {
-    return 0;
+    QWORD duration = BASS_ChannelGetLength(this->currentChannel, BASS_POS_BYTE);
+    return (uint) BASS_ChannelBytes2Seconds(this->currentChannel, duration);
 }
 
 float PlayerBass::getVolume() const {
@@ -148,11 +157,15 @@ void PlayerBass::setVolume(float newVolume) {
 }
 
 int PlayerBass::getPan() const {
-    return 0;
+    return this->pan;
 }
 
 void PlayerBass::setPan(int newPan) {
-    //do it
+    if(newPan > 100 || newPan < -100) {
+        return;
+    }
+    this->pan = newPan;
+    this->_setPan(this->currentChannel, this->pan);
 }
 
 QStringList * PlayerBass::getSupportedExtensions() const {
@@ -164,6 +177,11 @@ bool PlayerBass::isSupportedFile(QString fileName) const {
 }
 
 float * PlayerBass::getFFTData() {
+    if(this->bassInitialized) {
+        memset(this->fft, 0, sizeof(this->fft));
+        BASS_ChannelGetData(this->currentChannel, fft, BASS_DATA_FFT8192);
+        return fft;
+    }
     return NULL;
 }
 
@@ -185,4 +203,10 @@ void PlayerBass::e(DWORD c) {
 
 void PlayerBass::_setVolume(DWORD channel, float volume) {
     BASS_ChannelSetAttribute(channel, BASS_ATTRIB_VOL, volume);
+}
+
+void PlayerBass::_setPan(DWORD channel, int newPan) {
+    float pan;
+    pan = newPan / 100.f;
+    BASS_ChannelSetAttribute(channel, BASS_ATTRIB_PAN, pan);
 }
