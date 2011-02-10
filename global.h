@@ -7,6 +7,7 @@
 
 #define DBG /*dbg*/
 
+#define USEBASS /*use bass*/
 
 #ifdef DBG
 #include <QDebug>
