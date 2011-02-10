@@ -27,3 +27,18 @@ Playlist * PlaylistManager::getPlaylistByIndex(uint index) {
     }
     return NULL;
 }
+
+Playlist * PlaylistManager::getPlaylistByName(QString name, bool ignoreCase) {
+    if(name.isNull() || name.isEmpty()) {
+        return NULL;
+    }
+    int len = this->playlists.length();
+    for(int i = 0; i < len; i++) {
+        Playlist * cplaylist = this->getPlaylistByIndex(i);
+        Qt::CaseSensitivity cases = ignoreCase ? Qt::CaseInsensitive : Qt::CaseSensitive;
+        if(cplaylist != NULL && cplaylist->getName().compare(name, cases)) {
+            return cplaylist;
+        }
+    }
+    return NULL;
+}
