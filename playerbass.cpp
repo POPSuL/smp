@@ -18,7 +18,6 @@ PlayerBass::PlayerBass(QObject *parent)
         qDebug() << "failed set floatdsp. Error code:" << BASS_ErrorGetCode();
 #endif
     }
-    //...
     this->volume = 0.1f;
     this->bassInitialized = true;
 }
