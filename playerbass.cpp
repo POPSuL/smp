@@ -30,7 +30,7 @@ iMediaPlayer * PlayerBass::getInstance() {
     return instance;
 }
 
-void PlayerBass::play(QString file, bool withFade) {
+void PlayerBass::play(const QString& file, bool withFade) {
 #ifdef DBG
     qDebug() << "Start playing";
 #endif
@@ -167,11 +167,11 @@ void PlayerBass::setPan(int newPan) {
     this->_setPan(this->currentChannel, this->pan);
 }
 
-QStringList * PlayerBass::getSupportedExtensions() const {
+const QStringList& PlayerBass::getSupportedExtensions() const {
     return 0;
 }
 
-bool PlayerBass::isSupportedFile(QString fileName) const {
+bool PlayerBass::isSupportedFile(const QString& fileName) const {
     return false;
 }
 

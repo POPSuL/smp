@@ -5,10 +5,10 @@ Playlist::Playlist(QObject *parent) :
 {
 }
 
-QString Playlist::getName() {
+const QString& Playlist::getName() const {
     return this->name;
 }
 
-QList<Track*> * Playlist::getTracks() {
+const QList<Track*>& Playlist::getTracks() const {
     return this->tracks;
 }

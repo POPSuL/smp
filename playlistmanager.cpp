@@ -28,7 +28,7 @@ Playlist * PlaylistManager::getPlaylistByIndex(uint index) {
     return NULL;
 }
 
-Playlist * PlaylistManager::getPlaylistByName(QString name, bool ignoreCase) {
+Playlist * PlaylistManager::getPlaylistByName(const QString& name, bool ignoreCase) {
     if(name.isNull() || name.isEmpty()) {
         return NULL;
     }
