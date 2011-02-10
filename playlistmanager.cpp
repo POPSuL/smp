@@ -17,7 +17,7 @@ PlaylistManager * PlaylistManager::getInstance() {
     return instance;
 }
 
-QList<Playlist *> * PlaylistManager::getPlaylists() {
+const QList<Playlist *>& PlaylistManager::getPlaylists() {
     return this->playlists;
 }
 
