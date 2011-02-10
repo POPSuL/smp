@@ -7,6 +7,11 @@
 #include "global.h"
 #include "playlist.h"
 
+/**
+  *
+  * @package Simple Media Player
+  * @author Viktor Suprun
+  */
 class PlaylistManager : public QObject
 {
 Q_OBJECT
