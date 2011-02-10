@@ -17,11 +17,11 @@ class Playlist : public QObject
 Q_OBJECT
 public:
     explicit Playlist(QObject *parent = 0);
-    QString getName();
-    QList<Track *> * getTracks();
+    const QString& getName() const;
+    const QList<Track *>& getTracks() const;
 private:
     QString name;
-    QList<Track *> * tracks;
+    QList<Track *> tracks;
 signals:
 
 public slots:

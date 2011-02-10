@@ -27,7 +27,7 @@ public:
       * @param bool on true provide a fade in effect
       * @return void
      */
-    virtual void play(QString file, bool withFadeIn = false) = 0;
+    virtual void play(const QString& file, bool withFadeIn = false) = 0;
 
     /**
       * Continue playing if paused
@@ -127,7 +127,7 @@ public:
       *
       * @return QStringList
      */
-    virtual QStringList * getSupportedExtensions() const = 0;
+    virtual const QStringList& getSupportedExtensions() const = 0;
 
     /**
       *
@@ -135,7 +135,7 @@ public:
       * @param QString
       * @return bool
      */
-    virtual bool isSupportedFile(QString fileName) const = 0;
+    virtual bool isSupportedFile(const QString& fileName) const = 0;
 
     /**
       *
@@ -145,7 +145,7 @@ public:
     virtual float * getFFTData() = 0; //for visual
 
 signals:
-    void startPlaying(QString file);
+    void startPlaying(const QString& file);
     void paused();
     void stopped();
     void volumeChanged(float newVolume);

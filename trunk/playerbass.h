@@ -17,7 +17,7 @@ class PlayerBass : public iMediaPlayer
     Q_OBJECT
 public:
     static iMediaPlayer * getInstance();
-    virtual void play(QString file, bool withFade = false);
+    virtual void play(const QString& file, bool withFade = false);
     virtual void play();
     virtual void pause();
     virtual void stop(bool withFadeOut = false);
@@ -31,8 +31,8 @@ public:
     virtual void setVolume(float newVolume);
     virtual int getPan() const;
     virtual void setPan(int newPan);
-    virtual QStringList * getSupportedExtensions() const;
-    virtual bool isSupportedFile(QString fileName) const;
+    virtual const QStringList& getSupportedExtensions() const;
+    virtual bool isSupportedFile(const QString& fileName) const;
     virtual float * getFFTData(); //for visual
 private:
     explicit PlayerBass(QObject *parent = 0);
