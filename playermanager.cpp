@@ -10,7 +10,7 @@ PlayerManager::PlayerManager(QObject *parent) :
     this->player = PlayerBass::getInstance();
 #endif
     //...
-    if(this->player) {
+    if(this->player == NULL) {
         ERRM("Failed initialize player");
         exit(1);
     }

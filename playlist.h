@@ -6,6 +6,12 @@
 #include "global.h"
 #include "track.h"
 
+/**
+  * A playlist representation class.
+  *
+  * @package Simple Media Player
+  * @author Viktor Suprun
+  */
 class Playlist : public QObject
 {
 Q_OBJECT

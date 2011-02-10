@@ -6,6 +6,7 @@
 /**
   * This class is a generic player interface all players must implement
   *
+  * @package Simple Media Player
   * @author Viktor Suprun
  */
 class iMediaPlayer : public QObject {

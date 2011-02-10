@@ -9,6 +9,11 @@
 #include "playerbass.h"
 #endif
 
+/**
+  *
+  * @package Simple Media Player
+  * @author Viktor Suprun
+  */
 class PlayerManager : public QObject
 {
 Q_OBJECT

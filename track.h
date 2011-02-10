@@ -3,6 +3,12 @@
 
 #include <QObject>
 
+/**
+  * A track representation class.
+  *
+  * @package Simple Media Player
+  * @author Viktor Suprun
+  */
 class Track : public QObject
 {
 Q_OBJECT

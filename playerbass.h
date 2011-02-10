@@ -9,6 +9,7 @@
 /**
   * Media player based on BASS library
   *
+  * @package Simple Media Player
   * @author Viktor Suprun
   */
 class PlayerBass : public iMediaPlayer
