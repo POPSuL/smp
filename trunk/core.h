@@ -6,6 +6,7 @@
 #include <QSettings>
 #include "global.h"
 #include "playermanager.h"
+#include "pluginsmanager.h"
 
 /**
   * The highest level class provides an interface to configure and load

@@ -26,14 +26,9 @@ Core Core::getInstance(int argc, char* argv[]){
 }
 
 void Core::configure(){
-    try {
-        this->loadPlayerManager()
-            ->loadPlugins()
-            ->loadGUI();
-    }
-    catch (Exception ex){
-        //@todo: exception handling
-    }
+    this->loadPlayerManager()
+        ->loadPlugins()
+        ->loadGUI();
 }
 
 int Core::loadApplication(){
