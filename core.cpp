@@ -1,20 +1,31 @@
 #include "core.h"
 
-Core::Core(QObject *parent) :
+Core::Core(int argc, char* argv[], QObject *parent) :
     QObject(parent) {
+    this->argc = argc;
+    this->agrv = argv;
+    this->playerManager = PlayerManager::getInstance();
+    this->pluginsManager = PluginsManager::getInstance();
+    this->application = new QApplication(this->argc, this->argv);
+    this->config = new QSettings(this->application->applicationDirPath()+"config.ini", QSettings::IniFormat);
 }
 
-Core Core::getInstance(){
+Core::~Core(){
+    delete this->playerManager;
+    delete this->pluginsManager;
+    delete this->guiManager;
+    delete this->application;
+    delete this->config;
+}
+
+Core Core::getInstance(int argc, char* argv[]){
     if (Core::instance == NULL)
-        Core::instance = new Core();
+        Core::instance = new Core(argc, argv[]);
 
     return Core::instance;
 }
 
-void Core::configure(int argc, char* argv[]){
-    this->argc = argc;
-    this->agrv = argv;
-
+void Core::configure(){
     try {
         this->loadPlayerManager()
             ->loadPlugins()
@@ -26,19 +37,18 @@ void Core::configure(int argc, char* argv[]){
 }
 
 int Core::loadApplication(){
-    QApplication app(this->argc, this->argv);
-    return app.exec();
+    return this->application->exec();
 }
 
 Core* Core::loadPlayerManager(){
-    this->playerManager = PlayerManager::getInstance();
     //@todo: player manager configuration
     return this;
 }
 
 Core* Core::loadPlugins(){
-    this->pluginsManager = PluginsManager::getInstance();
-    this->pluginsManager->loadAll();
+    this->pluginsManager->loadPlugins();
+
+    //@todo: plugins loading
     return this;
 }
 

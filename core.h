@@ -2,6 +2,8 @@
 #define CORE_H
 
 #include <QObject>
+#include <QApplication>
+#include <QSettings>
 #include "global.h"
 #include "playermanager.h"
 
@@ -22,7 +24,7 @@ public:
       *
       * @return Core
      */
-    static Core* getInstance();
+    static Core* getInstance(int argc, char* argv[]);
 
     /**
       * Configures application: loads player manager, plugins, GUI, configuration manager.
@@ -31,7 +33,7 @@ public:
       * @param char* argv
       * @return void
      */
-    void configure(int argc, char* argv[]);
+    void configure();
 
     /**
       * Create new QApplication object and passes execution result to main function.
@@ -41,7 +43,7 @@ public:
     int loadApplication();
 
 private:
-    explicit Core(QObject *parent = 0);
+    explicit Core(int argc, char* argv[], QObject *parent = 0);
 
     /**
       *
@@ -65,7 +67,9 @@ private:
     PlayerManager* playerManager;
     PluginsManager* pluginsManager;
     GuiManager* guiManager;
-    configManager* configManager;
+
+    QApplication* application;
+    QSettings* config;
 
     /**
       * @var int command line argument
