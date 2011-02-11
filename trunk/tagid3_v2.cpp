@@ -47,5 +47,19 @@ bool TagID3_V2::readId3() {
 }
 
 V2_TAG * TagID3_V2::nextTag() {
-
+    V2_TAG * tag = new V2_TAG;
+    char *tagname = new char[4];
+    char *flags;
+    tagname[0] = *this->id3;
+    this->id3++;
+    tagname[1] = *this->id3;
+    this->id3++;
+    tagname[2] = *this->id3;
+    this->id3++;
+    tagname[3] = *this->id3;
+    this->id3++;
+    flags[0] = *this->id3;
+    this->id3++;
+    flags[1] = *this->id3;
+    this->id3++;
 }
