@@ -45,6 +45,7 @@ public:
 
 private:
     explicit Core(int argc, char* argv[], QObject *parent = 0);
+    ~Core();
 
     /**
       *
