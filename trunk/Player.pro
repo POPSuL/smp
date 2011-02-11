@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     track.cpp \
     tagmanager.cpp \
     tagid3_v2.cpp \
-    tagid3_v1.cpp
+    tagid3_v1.cpp \
+    pluginsmanager.cpp
 HEADERS += iMediaPlayer.h \
     core.h \
     playerbass.h \
@@ -24,4 +25,5 @@ HEADERS += iMediaPlayer.h \
     track.h \
     tagmanager.h \
     tagid3_v2.h \
-    tagid3_v1.h
+    tagid3_v1.h \
+    pluginsmanager.h
