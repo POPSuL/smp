@@ -168,7 +168,7 @@ void PlayerBass::setPan(int newPan) {
 }
 
 const QStringList& PlayerBass::getSupportedExtensions() const {
-    return 0;
+    return QStringList();
 }
 
 bool PlayerBass::isSupportedFile(const QString& fileName) const {

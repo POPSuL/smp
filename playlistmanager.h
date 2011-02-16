@@ -17,7 +17,7 @@ class PlaylistManager : public QObject
 Q_OBJECT
 public:
     static PlaylistManager * getInstance();
-    const QList<Playlist*>& getPlaylists();
+    QList<Playlist*> * getPlaylists();
     Playlist * getPlaylistByIndex(uint index);
     Playlist * getPlaylistByName(const QString& name, bool ignoreCase = true);
 
@@ -25,7 +25,7 @@ private:
     explicit PlaylistManager(QObject *parent = 0);
     static PlaylistManager * instance;
     static QMutex mutex;
-    QList<Playlist *> playlists;
+    QList<Playlist *> *playlists;
 
 signals:
 
