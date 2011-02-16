@@ -1,11 +1,13 @@
 #include "core.h"
 
+
+Core * Core::instance = NULL;
 Core::Core(int argc, char* argv[], QObject *parent) :
     QObject(parent) {
     this->argc = argc;
-    this->agrv = argv;
+    *(this->argv) = *argv;
     this->playerManager = PlayerManager::getInstance();
-    this->pluginsManager = PluginsManager::getInstance();
+    //this->pluginsManager = PluginsManager::getInstance();
     this->application = new QApplication(this->argc, this->argv);
     this->config = new QSettings(this->application->applicationDirPath()+"config.ini", QSettings::IniFormat);
 }
@@ -18,9 +20,9 @@ Core::~Core(){
     delete this->config;
 }
 
-Core Core::getInstance(int argc, char* argv[]){
+Core * Core::getInstance(int argc, char* argv[]){
     if (Core::instance == NULL)
-        Core::instance = new Core(argc, argv[]);
+        Core::instance = new Core(argc, argv);
 
     return Core::instance;
 }
@@ -41,7 +43,7 @@ Core* Core::loadPlayerManager(){
 }
 
 Core* Core::loadPlugins(){
-    this->pluginsManager->loadPlugins();
+    //this->pluginsManager->loadPlugins();
 
     //@todo: plugins loading
     return this;

@@ -17,13 +17,13 @@ PlaylistManager * PlaylistManager::getInstance() {
     return instance;
 }
 
-const QList<Playlist *>& PlaylistManager::getPlaylists() {
+QList<Playlist *> * PlaylistManager::getPlaylists() {
     return this->playlists;
 }
 
 Playlist * PlaylistManager::getPlaylistByIndex(uint index) {
-    if(index < this->playlists.length()) {
-        return this->playlists.at(index);
+    if(index < this->playlists->length()) {
+        return this->playlists->at(index);
     }
     return NULL;
 }
@@ -32,7 +32,7 @@ Playlist * PlaylistManager::getPlaylistByName(const QString& name, bool ignoreCa
     if(name.isNull() || name.isEmpty()) {
         return NULL;
     }
-    int len = this->playlists.length();
+    int len = this->playlists->length();
     for(int i = 0; i < len; i++) {
         Playlist * cplaylist = this->getPlaylistByIndex(i);
         Qt::CaseSensitivity cases = ignoreCase ? Qt::CaseInsensitive : Qt::CaseSensitive;
