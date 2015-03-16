@@ -1,0 +1,3 @@
+So tired of the spaceship that landed on the fifth of the desktop screen? You're in the right place. This open source project is aimed to be as simple as possible. Minimalistic graphical user interface, in aggregate with geek's quantity of hotkeys, gives a great advantage over other similar projects. The player doesn't disturb you until you worry about that yourself. It has very easy autoupdating system. You can turn on a quiet autoupdate.
+
+Some other planned features will be described later.
